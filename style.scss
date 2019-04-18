@@ -1,0 +1,185 @@
+// import partials
+
+@import 'reset';
+
+// Sass variables
+
+$pc: #ffffff;
+$tc: #2a2a2a;
+$hc: #eb3f7a;
+$gr: #717070;
+$alarm: #e44d26;
+$info: #42a5f5;
+$success: #8bc44a;
+$base: 10px;
+$sans: sans-serif;
+$serif: serif;
+$mono: monospace;
+
+// Layout
+
+.wrapper {
+  background-color: rgba(230, 230, 230, 0.2);
+  border: 1px solid lighten($tc, 60%);
+  box-shadow: 0px 1px 8px -3px rgba(0, 0, 0, 0.3);
+  color: $tc;
+  font-family: $sans;
+  font-size: $base * 1.6;
+  margin: auto;
+  margin-top: $base;
+  padding: $base;
+  transition: background-color 1s ease-in-out;
+  width: $base * 124;
+  pre {
+    color: $hc;
+    font-family: $mono;
+    font-weight: 100;
+    font-size: $base;
+    padding: $base * 2;
+  }
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: $pc;
+    cursor: pointer;
+  }
+}
+.clean-wrapper {
+  background-color: rgba(230, 230, 230, 0.4);
+  border: 1px solid lighten($tc, 60%);
+  box-shadow: 0px 1px 8px -3px rgba(0, 0, 0, 0.3);
+  color: $tc;
+  font-family: $sans;
+  font-size: $base * 1.6;
+  margin: auto;
+  margin-top: $base;
+  padding: $base;
+  width: $base * 124;
+  pre {
+    font-size: $base;
+  }
+}
+// Typography
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: $base;
+  padding: $base;
+  &.large {
+    font-size: $base * 3;
+  }
+}
+
+// Buttons
+
+.button {
+  background-color: $hc;
+  color: $pc;
+  font: 1.1em $sans 900;
+  border-radius: 0.2em;
+  border: 0;
+  padding: 1em 2em;
+  // transition: background-color 0.5s ease-in-out;
+  // transition: color 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: darken($pc, 20%);
+    color: $tc;
+    cursor: pointer;
+  }
+}
+
+// Various
+
+.accent {
+  background-color: $hc;
+}
+
+.button-accent {
+  background-color: $hc;
+  color: $pc;
+  padding: $base $base * 2;
+  transition: background-color 0.5s ease-in-out;
+  cursor: pointer;
+}
+footer {
+  font-family: $sans;
+  font-size: $base;
+  height: 50px;
+  widows: 100%;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 2em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: lighten($tc, 60%);
+  &:hover {
+    @extend .button-accent;
+  }
+}
+
+%transition {
+  background-color: $success;
+  border-radius: 0.5em;
+  box-shadow: 2px 2px 6px -2px rgba(0, 0, 0, 0.3);
+  color: $pc;
+  transform: scale(1.02);
+}
+button {
+  color: $pc;
+  padding: 1rem 4rem;
+  font-size: $base * 1.4;
+  font-weight: 900;
+}
+
+.butt {
+  transition: all 1s ease-in-out;
+  border-radius: 0.5em;
+  color: $tc;
+  &:hover {
+    @extend %transition;
+    background-color: darken($pc, 75%);
+    cursor: pointer;
+  }
+}
+.butt-info {
+  transition: all 1s ease-in-out;
+  background-color: $info;
+  border-radius: 0.5em;
+  &:hover {
+    @extend %transition;
+    background-color: darken($info, 20%);
+    cursor: pointer;
+  }
+}
+.butt-success {
+  transition: all 1s ease-in-out;
+  background-color: $success;
+  border-radius: 0.5em;
+  &:hover {
+    @extend %transition;
+    background-color: darken($success, 20%);
+    cursor: pointer;
+  }
+}
+.butt-error {
+  transition: all 1s ease-in-out;
+  background-color: $alarm;
+  border-radius: 0.5em;
+  &:hover {
+    @extend %transition;
+    background-color: darken($alarm, 10%);
+    cursor: pointer;
+  }
+}
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}

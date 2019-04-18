@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sass</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    <div class="wrapper">
+        <h1 class="large">Sass Course</h1>
+    </div>
+<div class="wrapper">
+
+    <h2>Compile Sass to Css</h2>
+    <p>Compile sass to css with this command:
+    <pre>
+      sass --watch style.scss:style.css --no-cache --style compressed
+    </pre>
+    </p>
+</div>
+<div class="wrapper">
+  <h2>Nesting</h2>
+  <h3>Attention! Avoid nesting below 3 levels. <span style="color: #EB3F7A">2-3 levels</span> is sufficient to achieve your golas.</h3>
+
+  <h3>CSS</h3>
+  <pre>
+      h1 { 
+        font-size: 3rem;
+        color: red; 
+      }
+      h1 a {
+        color:blue;
+        }
+      h1 a:hover {
+        color: green;
+      }
+  </pre>
+
+<h3>Sass</h3>
+
+  <pre>
+      h1 {
+        font-size: 3rem;
+        color: red;
+        a {
+            color:blue;
+            &:hover {
+              color: green;
+            }
+          }
+  </pre>
+</div>
+<div class="wrapper">
+  <h2>
+    @extend
+  </h2>
+  <p>Define some class eg. btn and then use it in other classes by adding @extend .btn</p>
+  <p>For example if you have a button with a class .btn</p>
+  <p>And then want to have a div with class of .colorful </p>
+
+  <pre>
+    .btn {
+      background-color: $accent;
+      color: $basecolor;
+      font: 2em $basefont 900;
+      border-radius; $radius;
+      border: 0;
+      padding: $basesize $basesize * 2;
+    }
+
+    .colorfull {
+      @extend .btn;
+    }
+  </pre>
+
+</div>
+<div class="wrapper">
+  
+  <h3>Sample code used at this website. Hover over footer below to check it.</h3>
+
+    <pre>
+        .button-accent {
+          background-color: $hc;
+          color: $pc;
+          padding: $base $base * 2;
+          transition: background-color 0.5s ease-in-out;
+          cursor: pointer;
+        }
+        footer {
+          font-family: $sans;
+          font-size: $base;
+          height: 50px;
+          widows: 100%;
+          margin: auto;
+          margin-top: 100px;
+          margin-bottom: 100px;
+          padding: 2em;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: lighten($tc, 60%);
+          &:hover {
+            @extend .button-accent;
+          }
+        }
+    </pre>
+</div>
+
+<div class="wrapper">
+  <h3>Transitions</h3>
+  <p>Transitions are really simple o make. For example if you want to change the background color of a button on hover.
+  </p>
+  <pre>
+
+      div {
+        transition: all 0.5s ease;
+        background: tomato;
+        padding: 10px;
+          &:hover {
+          background: lightgray;
+          color: black
+          padding: 20px;
+          }
+        }
+  </pre>
+  <button class="button">Hello</button>
+</div>
+<div class="clean-wrapper">
+  <h3>@extend and %placeholder</h3>
+  <p>Define your "abstract class (not present in HTML code called eg.transition.</p>
+  <p>Use that clas later to @extend from it</p>
+
+  <pre>
+    <span style="color:#EB3F7A">%transition</span>
+       {
+        background-color: $success;
+        border-radius: 0.5em;
+        box-shadow: 2px 2px 6px -2px rgba(0, 0, 0, 0.3);
+        color: $pc;
+        transform: scale(1.02);
+      }
+      .butt-info {
+        transition: all 1s ease-in-out;
+        background-color: $info;
+        border-radius: 0.5em;
+        &:hover {
+          <span style="color:#EB3F7A">@extend %transition</span>;
+          background-color: darken($info, 20%);
+          cursor: pointer;
+        }
+      }
+  </pre>
+
+  <div class="flex-container">
+      <button class="butt">Button</button>
+      <button class="butt-info">Info</button>
+      <button class="butt-success">Success</button>
+      <button class="butt-error">Error</button>
+  </div>
+</div>
+
+
+<div class="wrapper">
+  <h3>Parent selectors</h3>
+
+<pre>
+h2 {
+  color: white;
+  .about & {color: red;}
+  .contact & {color:orange;}
+  .info & {color:yellow;}
+}
+</pre>
+
+<h2>Compiles to:</h2>
+
+<pre>
+h2 (color:white;)
+  .about h2 {color: red;}
+  .contact h2 {color: orange;}
+  .info h2 {color: yellow;}
+h2 {
+  color: white;
+  .about {color: red;}
+  .contact {color: orange;}
+  .info {color: yellow;}
+}
+</pre>
+
+<h2>Compiles to:</h2>
+<h2>Anything that is inside h2 with classes of .about, .contact, .info as a child element</h2>
+
+
+  <!-- <code>
+      <h2>
+          <span class="about">Title</span>
+          <span class="contact">Title</span>
+          <span class="info">Title</span>
+        </h2>
+  </code>
+</pre> -->
+
+<pre>
+  h2 (color:white;)
+  h2 .about {color: red;}
+  h2 .contact {color: orange;}
+  h2 .info {color: yellow;}
+</pre>
+
+<pre>
+  h2 {
+  color: white;
+  &.about {color: red;}
+  &.contact {color: orange;}
+  &.info {color: yellow;}
+}
+</pre>
+
+<h2>Compiles to:</h2>
+<h2>Anything that is at the samee level as h2 with classes of .about, .contact, .info as a child element</h2>
+
+<!-- <pre> 
+  <h2 class="about">Title</h2>
+  <h2 class="contact">Title</h2>
+  <h2 class="info">Title</h2>
+</pre> -->
+
+<pre>
+h2 (color:white;)
+h2.about {color: red;}
+h2.contact {color: orange;}
+h2.info {color: yellow;}
+a {
+  color: white;
+  &:hover {
+  color:red;
+  }
+}
+
+</pre>
+
+<h2>Compiles to:</h2> 
+
+<pre>
+a {color:white;}
+a:hover {color:red;}
+</pre>
+
+</div>
+
+<div class="wrapper">
+  <h2>@import to work with multiple files</h2>
+  <p>Create a partial file with a name of _file.scss</p>
+  <p>and then import it into the main sass file:</p>
+  <p>@import "file";</p>
+
+  <pre>
+    @import "filename";
+  </pre>
+</div>
+
+
+<div>
+  <footer>&copy; 2019 | All rights reserved by Graymok Design</footer>
+</div>
+  </body>
+</html>
